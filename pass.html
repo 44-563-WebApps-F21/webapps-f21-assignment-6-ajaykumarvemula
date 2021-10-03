@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+ <title>This is Javascript Assignment</title>
+<body>
+<h1>Pass phrase by Ajay kumar Vemula</h1>
+<h2>Getting input</h2>
+
+<form>
+    <label for="secret_phrase">Enter the secret phrase</label>
+    <input type ="password" id="secret_phrase" name="secret_phrase" value="Let me in"> <br>
+
+    <label for="enter_phrase">Enter a phrase</label>
+    <input type ="text" id="enter_phrase" name="enter_phrase" autofocus> <br>
+
+    <input type="button" onclick="processPhrase()" value="Check the phrase">
+</form>
+
+
+<p id="result">This text will be replaced </p>
+
+<script> 
+
+function processPhrase (){
+    let correct=0,wrong=0;
+    secretphrase=document.getElementById("secret_phrase").value
+    enterphrase=document.getElementById("enter_phrase").value
+    result = document.getElementById("result")
+    if(secretphrase===enterphrase)
+    {
+        alert("Access allowed");
+        correct++;
+        result.innerHTML = "Correct Count"+correct
+    }
+    else
+    {
+        alert("Access denied");
+        wrong++;
+        result.innerHTML = "Wrong Count"+wrong
+    }
+    /*console.log("Getting form values")
+    age = document.getElementById("form1_age").value
+    nick = document.getElementById("form1_nick").value
+    confirmed = confirm("Are these the values? "+age+" and "+nick)
+    
+    out = document.getElementById("result")
+    if(confirmed){
+        out.innerHTML = "Values were confirmed"
+    } else {
+        out.innerHTML = "Values were not confirmed"
+    }*/
+    <div class= "container">
+    <p>.....</p>
+    <img src="vampire.jpg" alt="vampire.jpg" width="200" height="200"/>
+    </div>
+}
+</script>
+
+</body>
+</html>
