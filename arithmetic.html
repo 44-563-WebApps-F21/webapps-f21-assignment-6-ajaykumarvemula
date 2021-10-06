@@ -3,80 +3,107 @@
  
 
 <head>
-    <title>Ajay kumar Vemula computes</title>
+    <!-- <meta charset="utf-8"> -->
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" -->
+        <!-- integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" -->
+        <!-- integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" -->
+        <!-- crossorigin="anonymous"></script> -->
+    <title>Arithmetic Assignment-6</title>
+
+    <script>
+
+        function powers() {
+            let bv = document.getElementById("fbase").value;
+            let ev = document.getElementById("fexponent").value;
+            let result = "";
+            for (let i = 1; i <= ev; i++) {
+                result += Math.pow(bv, i);
+                for (let j = i; j <= i; j++) {
+                    if (j != ev) {
+                        result += ", ";
+                    }
+                }
+            }
+            document.getElementById("presult").innerHTML = result;
+            document.getElementById("bv").innerHTML = bv;
+            document.getElementById("ev").innerHTML = ev;
+        }
+        function processRadio(Calculations) {
+            let v1 = document.getElementById("fbase").value;
+            let v2 = document.getElementById("fexponent").value;
+            let p = (+v1 + +v2);
+            if (Calculations == "plus") {
+                document.getElementById("aresult").innerHTML = p;
+            }
+            else if (Calculations == "minus") {
+                document.getElementById("aresult").innerHTML = (v1 - v2);
+            }
+            else if (Calculations == "times") {
+                document.getElementById("aresult").innerHTML = v1 * v2;
+            }
+            else if (Calculations == "divide") {
+                document.getElementById("aresult").innerHTML = v1 / v2;
+            }
+
+        }
+
+    </script>
 </head>
 <body>
 
-<h2>Getting input with radio buttons and checkboxes</h2>
+    <div class="container">
+        <h2>
+           Ajay kumar Vemula computes
+        </h2>
+        <br>
+        <form class="col">
+            <div class="row mb-3">
+                <label for="fbase" class="col-sm-2 form-label fw-bold">Enter a base </label>
+                <div class="col-sm-10">
+                    <input type="number" id="fbase" class="form-control form-control" name="fbase" value=10>
+                </div>
+            </div><br>
+            <div class="row mb-3">
+                <label for="fexponent" class="col-sm-2 form-label fw-bold">Enter an exponent </label>
+                <div class="col-sm-10">
+                    <input type="number" id="fexponent" name="fexponent" autofocus value="2"> <br>
+                </div>
+            </div><br>
+            <div class="row">
+                <div class="col-sm-10 offset-sm-2">
+                    <input type="button" class="btn btn-primary" onclick="powers()" value="Compute">
+                </div>
+            </div>
+        </form>
 
-    <form>
-        <input type="radio" id="rg1_red" name="color" value="red"   
-          checked >
-        <label for="rg1_red">Red</label></br>
-      
-        <input type="radio" id="rg1_blue" name="color" 
-           value="blue">
-        <label for="rg1_blue">Blue</label></br>
-      
-        <input type="radio" id="rg1_green" name="color"   
-           value="green">
-        <label for="rg1_green">Green</label></br>
-
-        <input type="button" onclick="resolveRadio()" value="Get values from radio group">
-      </form>
-      
-      <form>
-        <input type="checkbox" id="cb1_cheese" name="topping1"   
-          value="cheese" checked>
-        <label for="cb1_cheese">I want cheese</label></br>
-      
-        <input type="checkbox" id="cb1_olive" name="topping2" 
-           value="olive">
-        <label for="cb1_olive">I want olives</label></br>
-      
-        <input type="checkbox" id="cb1_onion" name="topping3"   
-           value="onion" checked>
-        <label for="cb1_onion">I want onions</label></br>
-
-        <input type="button" onclick="resolveCheck()" value="Get values from check boxes">
-      </form>
-      
-
-
-<p id="result">This text will be replaced </p>
-
-<script> 
-function resolveCheck() {
-    console.log("Getting input")
-    cheese = document.getElementById("cb1_cheese").checked
-    olives = document.getElementById("cb1_olive").checked
-    onions = document.getElementById("cb1_onion").checked
-    confirmed = confirm("Are these the values? "+cheese+" and "+olives+" and "+onions)
-    
-    out = document.getElementById("result")
-    if(confirmed){
-        out.innerHTML = "Values were confirmed"
-    } else {
-        out.innerHTML = "Values were not confirmed"
-    }
-}
-
-function resolveRadio() {
-    console.log("Getting input")
-    redOpt = document.getElementById("rg1_red").checked
-    blueOpt = document.getElementById("rg1_blue").checked
-    greenOpt = document.getElementById("rg1_green").checked
-    confirmed = confirm("Are these the values? "+redOpt+" and "+blueOpt+" and "+greenOpt)
-    
-    out = document.getElementById("result")
-    if(confirmed){
-        out.innerHTML = "Values were confirmed"
-    } else {
-        out.innerHTML = "Values were not confirmed"
-    }
-}
-
-</script>
-
+        <br>
+        <div class="fw-bold">Powers of <span id="bv" ></span> are: <span id="presult"
+                ></span>
+            (exponent was <span id="ev" style="color:green"></span><span>)</span>
+        </div>
+        <form>
+            <fieldset class="row mb-3">
+                <legend class="col-form-label col-sm-2 pt-0 text-warning">Arithmetic</legend>
+                <div class="col-sm-10">
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" name="Calculations"
+                            onclick="processRadio(this.value)" id="arithmetic" value="plus">+<br>
+                        <input type="radio" class="form-check-input" name="Calculations"
+                            onclick="processRadio(this.value)" id="arithmetic" value="minus">-<br>
+                        <input type="radio" class="form-check-input" name="Calculations"
+                            onclick="processRadio(this.value)" id="arithmetic" value="times">*<br>
+                        <input type="radio" class="form-check-input" name="Calculations"
+                            onclick="processRadio(this.value)" id="arithmetic" value="divide">/<br>
+                        <br>
+                    </div>
+                </div>
+                <div class="fw-bold fst-italic">Result is: <span type=text id="aresult" ></span>
+                </div>
+                <!-- <input type="text" id="aresult" size="20"> -->
+        </form>
+    </div>
 </body>
-</html> 
+
+</html>
