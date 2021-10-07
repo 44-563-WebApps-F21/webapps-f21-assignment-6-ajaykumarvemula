@@ -1,59 +1,93 @@
 <!DOCTYPE html>
 <html>
- <title>This is Javascript Assignment</title>
-<body>
-<h1>Pass phrase by Ajay kumar Vemula</h1>
-<h2>Getting input</h2>
 
-<form>
-    <label for="secret_phrase">Enter the secret phrase</label>
-    <input type ="password" id="secret_phrase" name="secret_phrase" value="Let me in"> <br>
-
-    <label for="enter_phrase">Enter a phrase</label>
-    <input type ="text" id="enter_phrase" name="enter_phrase" autofocus> <br>
-
-    <input type="button" onclick="processPhrase()" value="Check the phrase">
-</form>
-
-
-<p id="result">This text will be replaced </p>
-
-<script> 
-
-function processPhrase (){
-    let correct=0,wrong=0;
-    secretphrase=document.getElementById("secret_phrase").value
-    enterphrase=document.getElementById("enter_phrase").value
-    result = document.getElementById("result")
-    if(secretphrase===enterphrase)
-    {
-        alert("Access allowed");
-        correct++;
-        result.innerHTML = "Correct Count"+correct
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <title>Pass-Assignment-6</title>
+</head>
+<script>
+    let correct = 0;
+    let wrong = 0;
+    let ad = 0;
+    let currentImage = 1;
+    function processPhrase() {
+        console.log("Getting form values")
+        secret = document.getElementById("f1secret").value
+        guess = document.getElementById("f1guess").value
+        if (ad < 3) {
+            if (secret == guess) {
+                alert("Access allowed")
+                correct++;
+                document.getElementById("correctc").innerHTML = correct;
+            }
+            else {
+                alert("Access denied")
+                wrong++;
+                ad++;
+                document.getElementById("wrongc").innerHTML = wrong;
+            }
+        }
+        else {
+            alert("Account locked");
+        }
     }
-    else
-    {
-        alert("Access denied");
-        wrong++;
-        result.innerHTML = "Wrong Count"+wrong
+    function newImage() {
+        switch (currentImage) {
+            case 1:
+                document.getElementById("rimage").src = "vampire.jpg";
+                currentImage = 2;
+                break;
+            case 2:
+                document.getElementById("rimage").src = "elephant.jpg";
+                currentImage = 3;
+                break;
+            case 3:
+                document.getElementById("rimage").src = "muskart.jpg";
+                currentImage = 1;
+                break;
+        }
     }
-    /*console.log("Getting form values")
-    age = document.getElementById("form1_age").value
-    nick = document.getElementById("form1_nick").value
-    confirmed = confirm("Are these the values? "+age+" and "+nick)
-    
-    out = document.getElementById("result")
-    if(confirmed){
-        out.innerHTML = "Values were confirmed"
-    } else {
-        out.innerHTML = "Values were not confirmed"
-    }*/
-    <div class= "container">
-    <p>.....</p>
-    <img src="vampire.jpg" alt="vampire.jpg" width="200" height="200"/>
-    </div>
-}
 </script>
 
+<body>
+    <div class="container">
+        <h2 class="text-center">Pass phrase by Ajay Kumar Vemula</h2>
+        <br>
+        <form class="col g-2">
+            <div class="row mb-3">
+            <label for="f1secret" class="col-sm-2 form-label fw-bold">Enter the secret phrase</label>
+            <div class="col-sm-10">
+            <input type="password" class="form-control form-control" id="f1secret" name="f1secret" value="Let me in">
+            </div>
+            </div>
+            <br>
+            <div class="row mb-3">
+            <label for="f1guess" class="col-sm-2 form-label fw-bold">Enter a phrase</label>
+            <div class="col-sm-10">
+            <input type="text" class="form-control form-control-sm" id="f1guess" name="f1guess" autofocus> <br>
+            </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-10 offset-sm-2">
+            <input type="button" class="btn btn-primary" onclick="processPhrase()" value="Check the phrase">
+            </div>
+            </div>
+        </form>
+        <p class="fw-bold fst-italic">Wrong count is: <span id="wrongc" style="color: red;" class=""></span></p>
+        <p class="fw-bold fst-italic">Correct count is: <span style="color: green;" id="correctc"></span></p>
+
+        <div class="text-center">
+            <p class="text-danger">Click below Image to see Changes</p>
+            <img class="rounded" src="muskart.jpg" width="200" height="200" id="rimage" onclick=" newImage()">
+        </div>
+    </div>
+    </div>
 </body>
+
 </html>
